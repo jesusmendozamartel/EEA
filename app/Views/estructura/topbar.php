@@ -14,7 +14,7 @@
             <!--begin: Head -->
             <div class="kt-user-card kt-user-card--skin-dark kt-notification-item-padding-x" style="background-image: url(<?= base_url('assets/media/misc/bg-1.jpg') ?>)">
                 <div class="kt-user-card__avatar">
-                    <span class="kt-badge kt-badge--lg kt-badge--bold kt-badge--success">
+                    <span class="kt-badge--bold kt-font-success">
                         <?= strtoupper(substr(session()->get('username'), 0, 1)) ?>
                     </span>
                 </div>
@@ -23,20 +23,23 @@
                     <?= session()->get('username') ?>
                 </div>
             </div>
+
             <!--end: Head -->
 
             <!--begin: Navigation -->
             <div class="kt-notification">
                 <div class="kt-notification__custom kt-space-between">
-                    <a href="<?= site_url('login/logout') ?>" target="_self" class="btn btn-label btn-label-brand btn-sm btn-bold">
+                    <a href="<?= site_url('logout') ?>" target="_self" class="btn btn-label btn-label-brand btn-sm btn-bold">
                         Cerrar Sesión
                     </a>
                 </div>
             </div>
+
             <!--end: Navigation -->
 
         </div>
     </div>
+
     <!--end: User bar -->
 
 </div>
