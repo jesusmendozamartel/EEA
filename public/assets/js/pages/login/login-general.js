@@ -70,7 +70,7 @@ var KTLoginGeneral = function () {
                 },
                 error: function (e) {
                 },
-                dataType: 'html'
+                dataType: 'json'
             });
         });
     }
