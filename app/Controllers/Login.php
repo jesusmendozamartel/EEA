@@ -18,14 +18,14 @@ class Login extends BaseController
 
     public function valida()
     {
-        $model = new LoginModel();
+        $model = new \App\Models\LoginModel();
 
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
 
         $result = $model->valida($username, $password);
 
-        if ($result != false) {
+        if ($result) {
 
             session()->set([
                 'username'  => $username,

@@ -1,5 +1,5 @@
 <?php
-if ($this->session->userdata('logged_in') == TRUE) {
+if (session()->get('logged_in') === true) {
     ?>    
 
     <!-- begin:: Header Mobile -->
