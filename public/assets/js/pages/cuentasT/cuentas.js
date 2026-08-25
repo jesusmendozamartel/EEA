@@ -15,17 +15,14 @@ var Genera_CuentaT = function () {
 
         var tipo = $("#tipo").val();
 
-        // Siempre limpiar nivel y dnivel al cambiar tipo
         $("#nivel").val("").prop("disabled", false);
         $("#dnivel").val("").empty().prop("disabled", true);
 
         if (tipo === "2") {
             $("#nivel").prop("disabled", false);
-        }
-        else if (tipo === "3") {
+        } else if (tipo === "3") {
             $("#nivel").prop("disabled", false);
-        }
-        else {
+        } else {
             $("#nivel").prop("disabled", true);
             $("#dnivel").prop("disabled", true);
         }
@@ -35,52 +32,34 @@ var Genera_CuentaT = function () {
 
     });
 
+
     // ===============================
     // CAMBIO DE NIVEL
     // ===============================
     $("#nivel").on("change", function () {
 
-        var tipo  = $("#tipo").val();
+        var tipo = $("#tipo").val();
         var nivel = $("#nivel").val();
 
-        // SI NIVEL ES 4 → SIEMPRE LIMPIAR
         if (nivel === "4") {
-
-            $("#dnivel")
-                .val("")
-                .empty()
-                .prop("disabled", true);
-
-            return; // detener aquí
-
+            $("#dnivel").val("").empty().prop("disabled", true);
+            return;
         }
 
-        // SOLO SI TIPO 2 Y NIVEL DISTINTO DE 4
         if (tipo === "2") {
 
             var data = "nivel=" + nivel;
 
-            Load_Select(
-                'nivel',
-                'dnivel',
-                'index.php/common/getDnivel',
-                data,
-                '',
-                '0',
-                '0'
-            );
+            Load_Select('nivel', 'dnivel', 'index.php/common/getDnivel', data, '', '0', '0');
 
             $("#dnivel").prop("disabled", false);
 
         } else {
-
-            $("#dnivel")
-                .val("")
-                .empty()
-                .prop("disabled", true);
+            $("#dnivel").val("").empty().prop("disabled", true);
         }
 
     });
+
 
     // ===============================
     // SUBMIT
@@ -89,14 +68,13 @@ var Genera_CuentaT = function () {
 
         e.preventDefault();
 
-        var tipo  = $("#tipo").val();
+        var tipo = $("#tipo").val();
         var nivel = $("#nivel").val();
         var tiponivel = 'Genera_CuentaT_ET';
 
         if (tipo === "2" && nivel !== "4") {
             tiponivel = 'Genera_CuentaT_AE';
-        }
-        else if (tipo === "3") {
+        } else if (tipo === "3") {
             tiponivel = 'Genera_CuentaT_SI';
         }
 
@@ -124,6 +102,7 @@ var Genera_CuentaT = function () {
         });
 
     });
+
 
     return {
         init: function () {}

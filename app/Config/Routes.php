@@ -13,3 +13,8 @@ $routes->get('login/valida-test', 'Login::valida');
 $routes->get('main', 'Login::main');
 
 $routes->get('logout', 'Login::logout');
+
+
+$routes->get('genera/demo', 'Genera::Demo');
+
+$routes->get('genera', 'Genera::index');

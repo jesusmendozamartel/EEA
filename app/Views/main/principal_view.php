@@ -1,7 +1,7 @@
 <?= view('estructura/header') ?>
 
 <!-- begin::Body -->
-<body style="background-image: url(<?= base_url('assets/media/demos/header.jpg') ?>); background-position: center top; background-size: 100% 180px; min-height:100vh; display:flex; flex-direction:column;" class="kt-page--loading-enabled kt-page--loading kt-page--fluid kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header--minimize-menu kt-header-mobile--fixed kt-subheader--enabled kt-subheader--transparent kt-page--loading">
+<body style="background-image: url(<?= base_url('assets/media/demos/header.png') ?>); background-position: center top; background-size: 100% 180px; min-height:100vh; display:flex; flex-direction:column;" class="kt-page--loading-enabled kt-page--loading kt-page--fluid kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header--minimize-menu kt-header-mobile--fixed kt-subheader--enabled kt-subheader--transparent kt-page--loading">
 
     <!-- begin::Page loader -->
 
@@ -67,7 +67,7 @@
                                         <div class="kt-infobox__section">
 
                                             <h5 class="kt-infobox__subtitle text-center">
-                                                SISTEMA DE CONSULTAS DE GENERACIÓN DE LOS SECTORES INSTITUCIONALES
+                                                SISTEMA DE CONSULTAS EEA
                                             </h5>
 
                                             <h5 class="kt-infobox__subtitle text-center"></h5>

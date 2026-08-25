@@ -7,7 +7,7 @@ if (session()->get('logged_in') === true) {
 <div id="kt_header_mobile" class="kt-header-mobile kt-header-mobile--fixed">
     <div class="kt-header-mobile__logo">
         <a href="<?= site_url('login/main') ?>">
-            <img alt="Logo" width="40px" height="40px" src="<?= base_url('assets/media/logos/logo_inei.png') ?>" />
+            <img alt="Logo" width="40px" height="40px" src="<?= base_url('assets/media/logos/logo_eea.png') ?>" />
         </a>
     </div>
 
@@ -30,8 +30,8 @@ if (session()->get('logged_in') === true) {
                     <!-- begin:: Brand -->
                     <div class="kt-header__brand kt-grid__item" id="kt_header_brand">
                         <a class="kt-header__brand-logo" href="<?= site_url('login/main') ?>">
-                            <img alt="Logo" width="52px" height="52px" src="<?= base_url('assets/media/logos/logo_inei.jpg') ?>" class="kt-header__brand-logo-default" />
-                            <img alt="Logo" width="12px" height="12px" src="<?= base_url('assets/media/logos/logo_inei.jpg') ?>" class="kt-header__brand-logo-sticky" />
+                            <img alt="Logo" width="52px" height="52px" src="<?= base_url('assets/media/logos/logo_eea.png') ?>" class="kt-header__brand-logo-default" />
+                            <img alt="Logo" width="12px" height="12px" src="<?= base_url('assets/media/logos/logo_eea.png') ?>" class="kt-header__brand-logo-sticky" />
                         </a>
                     </div>
 
@@ -61,26 +61,11 @@ if (session()->get('logged_in') === true) {
                                         <ul class="kt-menu__subnav">
 
                                             <li class="kt-menu__item" aria-haspopup="true">
-                                                <a href="<?= site_url('Genera') ?>" class="kt-menu__link">
+                                                <a href="<?= site_url('genera') ?>" class="kt-menu__link">
                                                     <i class="kt-menu__link-icon flaticon-diagram"><span></span></i>
-                                                    <span class="kt-menu__link-text">Cuentas T</span>
+                                                    <span class="kt-menu__link-text">Sistema Intermedio</span>
                                                 </a>
                                             </li>
-
-                                            <li class="kt-menu__item" aria-haspopup="true">
-                                                <a href="<?= site_url('Genera/MQQ') ?>" class="kt-menu__link">
-                                                    <i class="kt-menu__link-icon flaticon-squares"><span></span></i>
-                                                    <span class="kt-menu__link-text">Matriz de quién a quién (MQQ)</span>
-                                                </a>
-                                            </li>
-
-                                            <li class="kt-menu__item" aria-haspopup="true">
-                                                <a href="<?= site_url('Genera/SI') ?>" class="kt-menu__link">
-                                                    <i class="kt-menu__link-icon flaticon-dashboard"><span></span></i>
-                                                    <span class="kt-menu__link-text">Sectores Institucionales</span>
-                                                </a>
-                                            </li>
-
                                         </ul>
                                     </div>
                                 </li>

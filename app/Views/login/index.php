@@ -43,24 +43,24 @@
     <!-- end::Head -->
 
     <!-- begin::Body -->
-    <body  style="background-image: url(<?php echo base_url(); ?>assets/media/demos/header.jpg); background-position: center top; background-size: 100% 180px;"  class="kt-page--loading-enabled kt-page--loading kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header--minimize-menu kt-header-mobile--fixed kt-subheader--enabled kt-subheader--transparent kt-page--loading"  >
+    <body  style="background-image: url(<?php echo base_url(); ?>assets/media/demos/header.png); background-position: center top; background-size: 100% 180px;"  class="kt-page--loading-enabled kt-page--loading kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header--minimize-menu kt-header-mobile--fixed kt-subheader--enabled kt-subheader--transparent kt-page--loading"  >
     <!-- begin::Page loader -->
 
         <!-- end::Page Loader -->        
         <!-- begin:: Page -->
         <div class="kt-grid kt-grid--ver kt-grid--root kt-page">
             <div class="kt-grid kt-grid--hor kt-grid--root kt-login kt-login--v2 kt-login--signin" id="kt_login">
-                <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" style="background-image: url(<?php echo base_url(); ?>assets/media/bg/bg-2.jpg);">
+                <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" style="background-image: url(<?php echo base_url(); ?>assets/media/bg/bg-3.png);">
                     <div class="kt-grid__item kt-grid__item--fluid kt-login__wrapper">
                         <div class="kt-login__container">
                             <div class="kt-login__logo">
                                 <a href="#">
-                                    <img src="<?php echo base_url(); ?>assets/media/logos/logo_inei.jpg">  	
+                                    <img src="<?php echo base_url(); ?>assets/media/logos/logo_eea.png">  	
                                 </a>
                             </div>
                             <div class="kt-login__signin">
                                 <div class="kt-login__head">
-                                    <h3 class="kt-login__title">Bienvenido al Sistema de Consultas de los Sectores Institucionales</h3>
+                                    <h3 class="kt-login__title">Bienvenido al Sistema de Consultas EEA</h3>
                                 </div>
                                 <form action="<?= site_url('login/valida') ?>" method="post" class="kt-form">
                                 <div class="input-group">
