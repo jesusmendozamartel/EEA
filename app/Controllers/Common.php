@@ -11,6 +11,11 @@ class Common extends BaseController
     public function __construct()
     {
         $this->common_model = new CommonModel();
+        
+        if (!session()->get('logged_in')) {
+            return redirect()->to('/login');
+        }
+    
         helper('download');
     }
 

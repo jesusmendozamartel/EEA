@@ -13,7 +13,6 @@ class Genera extends BaseController
     public function __construct()
     {
         $this->Genera_model = new GeneraModel();
-
         helper('date');
     }
 
@@ -35,6 +34,11 @@ class Genera extends BaseController
 
     public function index()
     {
+        if (!session()->get('logged_in')) {
+            return redirect()->to('/login');
+        } 
+        
+        
         $config = [
             'data' => [
                 'titulo'            => 'Cuentas T',
@@ -79,7 +83,6 @@ class Genera extends BaseController
                 ->setBody('No existe la plantilla: ' . $filename);
         }
 
-
         // ===================== CARGA EXCEL =====================
 
         try {
@@ -97,7 +100,6 @@ class Genera extends BaseController
                 );
         }
 
-
         // ===================== HOJA =====================
 
         $sheet = $excel->getSheetByName('Ctas_T_ET');
@@ -114,7 +116,6 @@ class Genera extends BaseController
                 );
         }
 
-
         // ===================== DATOS =====================
 
         $result = $this->Genera_model->Genera_ET($periodo);
@@ -130,54 +131,31 @@ class Genera extends BaseController
                     'Resultado vacío del modelo'
                 );
         }
-
-
+        
         // ===================== ESCRITURA EN EXCEL =====================
 
-        $sheet->setCellValue(
-            'A3',
-            'CUENTA DE PRODUCCIÓN, ' . $periodo
-        );
-
-        $sheet->setCellValue(
-            'A25',
-            'CUENTA DE GENERACIÓN DEL INGRESO, ' . $periodo
-        );
-
+        $sheet->setCellValue('A3','CUENTA DE PRODUCCIÓN, ' . $periodo );
+        $sheet->setCellValue('A25','CUENTA DE GENERACIÓN DEL INGRESO, ' . $periodo );
 
         foreach ($result as $row) {
 
-            if (
-                isset($row->CELDA) &&
-                isset($row->DATO)
-            ) {
-
-                $sheet->setCellValue(
-                    $row->CELDA,
-                    $row->DATO
-                );
+            if (isset($row->CELDA) && isset($row->DATO)) 
+            {
+                $sheet->setCellValue($row->CELDA,$row->DATO);
             }
         }
-
 
         // ===================== NOMBRE ARCHIVO =====================
 
         $username = session()->get('username');
 
-        $nombre =
-            'CuentaT_ET_' .
-            $username .
-            '_' .
-            $periodo .
-            '.xlsx';
-
+        $nombre = 'CuentaT_ET_' . $username . '_' . $periodo .'.xlsx';
 
         // ===================== GENERAR EXCEL =====================
 
         $writer = new XlsxWriter($excel);
 
         $writer->setPreCalculateFormulas(false);
-
 
         // ===================== GENERAR EN MEMORIA =====================
 
@@ -191,13 +169,11 @@ class Genera extends BaseController
 
         $contenido = ob_get_clean();
 
-
         // ===================== LIMPIEZA MEMORIA =====================
 
         $excel->disconnectWorksheets();
 
         unset($excel);
-
 
         // ===================== DESCARGA =====================
 
