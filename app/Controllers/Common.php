@@ -30,9 +30,9 @@ class Common extends BaseController
         return $data;
     }
 
-    public function getPeriodo()
+    public function getAnio()
     {
-        $result = $this->common_model->getPeriodo('ccnnma_datecono');
+        $result = $this->common_model->getAnio('EEA_parametros');
 
         return $this->response->setJSON($this->utf8($result));
     }

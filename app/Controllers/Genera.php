@@ -41,13 +41,13 @@ class Genera extends BaseController
         
         $config = [
             'data' => [
-                'titulo'            => 'Cuentas T',
-                'subtitulo'         => 'Generación',
-                'titulo_search'     => 'Generación',
+                'titulo'            => 'Sistema Intermedio EEA',
+                'subtitulo'         => 'Generación de plantillas EEA',
+                'titulo_search'     => 'Generación y exportación de plantillas EEA',
                 'titulo_resultado'  => 'Resultado de la Búsqueda'
             ],
             'js' => [
-                'pages/cuentasT/cuentas.js'
+                'pages/si/si.js'
             ],
             'template' => 'template1'
         ];
@@ -64,7 +64,7 @@ class Genera extends BaseController
     {
         // ===================== PARÁMETRO =====================
 
-        $periodo = $this->request->getPost('periodo');
+        $periodo = $this->request->getPost('annio');
 
         if (!$periodo) {
             return $this->response
