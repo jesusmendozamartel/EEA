@@ -6,11 +6,29 @@ use CodeIgniter\Model;
 
 class GeneraModel extends Model
 {
-    public function Genera_ET($periodo)
+    public function getParam($param)
     {
-        $sql = "EXEC sp_Procesa_CuentasT_ET ?";
+        $query = $this->db->query("EXEC sp_GetParam ?",
+            [
+                $param['anio']
+            ]
+        );
 
-        $query = $this->db->query($sql, [$periodo]);
+        return $query->getResult();
+    }
+    
+    public function getData($param)
+    {
+        $query = $this->db->query(
+            "EXEC sp_GetParam ?, ?, ?, ?, ?",
+            [
+                $param['anio'],
+                $param['formato'],
+                $param['plantilla'],
+                $param['nivel'],
+                $param['dnivel']
+            ]
+        );
 
         return $query->getResult();
     }

@@ -39,7 +39,7 @@ class Common extends BaseController
 
     public function getNivel()
     {
-        $tipo = $this->request->getPost('tipo');
+        $tipo = $this->request->getPost('plantilla');
 
         $result = $this->common_model->getNivel($tipo);
 

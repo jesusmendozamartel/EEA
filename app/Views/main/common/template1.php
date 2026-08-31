@@ -91,11 +91,7 @@
                 <div class="col-lg-2">
                     <div class="form-group">
                         <label for="nivel">Nivel</label>
-                        <select class="form-control form-control-sm" name="nivel" id="nivel">
-                            <option value="">Seleccione</option>
-                            <option value="1">Nivel 104</option>
-                            <option value="2">Nivel 54</option>                            
-                            <option value="3">Nivel 14</option>                            
+                        <select class="form-control form-control-sm" name="nivel" id="nivel">                         
                         </select>
                     </div>
                 </div>
@@ -108,7 +104,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-2">
+                <div class="col-12 col-sm-2">
                     <div class="form-group">
                         <label>&nbsp;</label>
                         <div>
@@ -128,3 +124,4 @@
 <!-- end:: Content -->
 
 </div>
+

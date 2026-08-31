@@ -19,6 +19,13 @@ class CommonModel extends Model
         return $query->getResultArray();
     }
 
+    public function getNivel($nivel)
+    {
+        $query = $this->db->query("EXEC sp_ccnngen_lista_nivel " . $nivel);
+
+        return $query->getResultArray();
+    }    
+    
     public function getDnivel($nivel)
     {
         $query = $this->db->query("EXEC sp_ccnngen_lista_ae " . $nivel);

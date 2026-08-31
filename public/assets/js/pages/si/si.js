@@ -1,7 +1,7 @@
 "use strict"
 
 var Genera_SI = function () {
-
+    
     $("#nivel").prop("disabled", true);
     $("#dnivel").prop("disabled", true);
 
@@ -14,6 +14,9 @@ var Genera_SI = function () {
 
         $("#nivel").val("").prop("disabled", plantilla === "");
         $("#dnivel").val("").empty().prop("disabled", true);
+        
+        var data = "plantilla=" + plantilla;
+        Load_Select('plantilla', 'nivel', 'index.php/common/getNivel', data, '', '1', '1');
 
     });
 
@@ -35,11 +38,11 @@ var Genera_SI = function () {
     // VALIDACIÓN Y ENVÍO
     var GeneraSIFormSubmit = function () {
 
-        $("#form").validate({
+    $("#form").validate({
 
-            rules: {
+        rules: {
                 anio: {
-                    required: true
+                required: true
                 },
                 formato: {
                     required: true
@@ -49,13 +52,13 @@ var Genera_SI = function () {
                 },
                 nivel: {
                     required: true
-                }
-            },
+            }
+        },
 
             invalidHandler: function (event, validator) {
             },
 
-            submitHandler: function (form) {
+        submitHandler: function (form) {
 
                 var data = "anio=" + $('#anio').val()
                     + "&formato=" + $('#formato').val()
@@ -66,14 +69,14 @@ var Genera_SI = function () {
                 $.ajax({
                     beforeSend: function () {
 
-                        Swal.fire({
-                            title: 'Procesando...',
+            Swal.fire({
+                title: 'Procesando...',
                             text: 'Generando archivo Excel Seleccionado',
                             type: "info",
-                            allowOutsideClick: false,
-                            showConfirmButton: false,
-                            onOpen: function () {
-                                Swal.showLoading();
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                onOpen: function () {
+                    Swal.showLoading();
                             }
                         });
 
@@ -100,10 +103,10 @@ var Genera_SI = function () {
                             "¡Ha ocurrido un error, consulte con el administrador!",
                             "error"
                         );
-                    }
-                });
-            }
-        });
+                }
+            });
+        }
+    });
     };
 
     GeneraSIFormSubmit();

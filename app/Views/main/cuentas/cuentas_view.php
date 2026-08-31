@@ -15,10 +15,5 @@
     </div>
 
     <?= view('estructura/footer') ?>
-
-    <?php foreach ($js as $scripts) { ?>
-        <script src="<?= base_url('assets/js/' . $scripts) ?>" type="text/javascript"></script>
-    <?php } ?>
-
 </body>
 </html>

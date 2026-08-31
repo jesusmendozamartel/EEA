@@ -37,6 +37,9 @@
 
     <!-- Metronic -->
     <link href="<?= base_url('assets/css/style.bundle.css') ?>" rel="stylesheet" type="text/css">
+    
+    <!-- Custom -->  
+    <link href="<?= base_url('assets/css/custom.css') ?>" rel="stylesheet" type="text/css" />
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?= base_url('assets/media/logos/favicon.ico') ?>">

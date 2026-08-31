@@ -60,18 +60,18 @@ class Genera extends BaseController
     // GENERA SISTEMA INTERMEDIO
     // ============================================================
 
-    public function Genera_CuentaT_ET()
+    public function Genera_SI()
     {
-        // ===================== PARÁMETRO =====================
+        // ===================== PARÁMETROS =====================
 
-        $periodo = $this->request->getPost('annio');
+        $parametros = $this->request->getPost();
 
-        if (!$periodo) {
-            return $this->response
-                ->setStatusCode(400)
-                ->setBody('Parámetro periodo inválido');
-        }
+        $param = $this->Genera_model->getParam($parametros['anio']);
+        
+        $data  = $this->Genera_model->getData($param);
 
+        echo print_r($data);
+        exit();
 
         // ===================== PLANTILLA =====================
 
