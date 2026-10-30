@@ -74,7 +74,8 @@
 <!-- begin:: JS específico de la página -->
 <?php if (isset($js) && is_array($js)): ?>
     <?php foreach ($js as $archivo): ?>
-        <script src="<?= base_url('assets/js/' . $archivo) ?>" type="text/javascript"></script>
+        <?php $assetPath = FCPATH . 'assets/js/' . $archivo; ?>
+        <script src="<?= base_url('assets/js/' . $archivo) . '?v=' . (is_file($assetPath) ? filemtime($assetPath) : '1') ?>" type="text/javascript"></script>
     <?php endforeach; ?>
 <?php endif; ?>
 <!-- end:: JS específico de la página -->

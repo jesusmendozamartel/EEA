@@ -70,8 +70,8 @@
                         <label for="tipo">Formato</label>
                         <select class="form-control form-control-sm" name="formato" id="formato">
                             <option value="">Seleccione</option>
-                            <option value="1">Grande</option>
-                            <option value="2">Pequeño</option>
+                            <option value="G">Empresa - Grande</option>
+                            <option value="P">Empresa - Pequeño</option>
                         </select>
                     </div>
                 </div>
@@ -82,8 +82,8 @@
                         <select class="form-control form-control-sm" name="plantilla" id="plantilla">
                             <option value="">Seleccione</option>
                             <option value="1">Modos de producción</option>
-                            <option value="2">Modos de producción - Paneles</option>                            
-                            <option value="3">Departamentos DNCN</option>
+                            <!--<option value="2">Modos de producción - Paneles</option>                            
+                            <option value="3">Departamentos DNCN</option>-->
                         </select>
                     </div>
                 </div>

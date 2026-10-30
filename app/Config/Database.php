@@ -31,10 +31,15 @@ class Database extends Config
         'password'     => '',
         'database'     => '',
         'DBDriver'     => 'MySQLi',
+        // Use SQLSRV's forward-only cursor to avoid the driver's default
+        // 10 MB client-side result buffer for large stored-procedure results.
+        'scrollable'   => false,
         'DBPrefix'     => '',
         'pConnect'     => false,
         'DBDebug'      => true,
-        'charset'      => 'utf8mb4',
+        // SQLSRV only recognizes UTF-8/UTF-8 (not utf8mb4); otherwise it uses
+        // the server's default code page and corrupts Spanish characters.
+        'charset'      => 'UTF-8',
         'DBCollat'     => 'utf8mb4_general_ci',
         'swapPre'      => '',
         'encrypt'      => false,

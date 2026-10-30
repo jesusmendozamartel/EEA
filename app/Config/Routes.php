@@ -18,3 +18,4 @@ $routes->get('logout', 'Login::logout');
 $routes->get('genera/demo', 'Genera::Demo');
 
 $routes->get('genera', 'Genera::index');
+$routes->post('genera/sistema-intermedio', 'Genera::Genera_SI');

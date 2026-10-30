@@ -19,22 +19,11 @@ class Common extends BaseController
         helper('download');
     }
 
-    private function utf8($data)
-    {
-        array_walk_recursive($data, function (&$value) {
-            if (is_string($value)) {
-                $value = mb_convert_encoding($value, 'UTF-8', 'Windows-1252');
-            }
-        });
-
-        return $data;
-    }
-
     public function getAnio()
     {
         $result = $this->common_model->getAnio('EEA_parametros');
 
-        return $this->response->setJSON($this->utf8($result));
+        return $this->response->setJSON($result);
     }
 
     public function getNivel()
@@ -43,7 +32,7 @@ class Common extends BaseController
 
         $result = $this->common_model->getNivel($tipo);
 
-        return $this->response->setJSON($this->utf8($result));
+        return $this->response->setJSON($result);
     }
 
     public function getDnivel()
@@ -52,6 +41,6 @@ class Common extends BaseController
 
         $result = $this->common_model->getDnivel($nivel);
 
-        return $this->response->setJSON($this->utf8($result));
+        return $this->response->setJSON($result);
     }
 }

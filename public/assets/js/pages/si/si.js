@@ -60,51 +60,102 @@ var Genera_SI = function () {
 
         submitHandler: function (form) {
 
-                var data = "anio=" + $('#anio').val()
-                    + "&formato=" + $('#formato').val()
-                    + "&plantilla=" + $('#plantilla').val()
-                    + "&nivel=" + $('#nivel').val()
-                    + "&dnivel=" + $('#dnivel').val();
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", base_url + "index.php/genera/sistema-intermedio");
+                xhr.responseType = "blob";
+                xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 
-                $.ajax({
-                    beforeSend: function () {
+                xhr.onloadstart = function () {
+                    Swal.fire({
+                        title: "Procesando...",
+                        text: "Generando el archivo Excel seleccionado",
+                        type: "info",
+                        allowOutsideClick: false,
+                        showConfirmButton: false,
+                        onOpen: function () { Swal.showLoading(); }
+                    });
+                };
 
-            Swal.fire({
-                title: 'Procesando...',
-                            text: 'Generando archivo Excel Seleccionado',
-                            type: "info",
-                allowOutsideClick: false,
-                showConfirmButton: false,
-                onOpen: function () {
-                    Swal.showLoading();
-                            }
-                        });
+                xhr.onload = function () {
+                    if (xhr.status < 200 || xhr.status >= 300) {
+                        var mensajeError = "No se pudo generar el archivo. Revise los datos e inténtelo nuevamente.";
+                        if (xhr.response && xhr.response.text) {
+                            xhr.response.text().then(function (texto) {
+                                if (texto.trim() === "No se encontró información") {
+                                    Swal.fire("Sin información", texto.trim(), "info");
+                                } else {
+                                    Swal.fire("Error " + xhr.status, mensajeError, "error");
+                                }
+                            });
+                        } else {
+                            Swal.fire("Error " + xhr.status, mensajeError, "error");
+                        }
+                        return;
+                    }
 
-                    },
+                    if (!xhr.response || xhr.response.size < 4) {
+                        Swal.fire("Archivo vacío", "El servidor no devolvió un Excel válido.", "error");
+                        return;
+                    }
 
-                    type: "POST",
-                    dataType: "html",
-                    url: base_url + 'index.php/Genera/Genera_SI',
-                    data: data,
+                    var signatureReader = new FileReader();
+                    signatureReader.onload = function () {
+                        var signature = new Uint8Array(signatureReader.result);
+                        if (signature[0] !== 0x50 || signature[1] !== 0x4B) {
+                            Swal.fire("No se recibió un Excel", "Revise su sesión e inténtelo nuevamente.", "error");
+                            return;
+                        }
 
-                    success: function (response) {
-                        console.log(response);
+                    var disposition = xhr.getResponseHeader("Content-Disposition") || "";
+                    var filenameMatch = disposition.match(/filename\*=UTF-8''([^;]+)|filename="?([^";]+)"?/i);
+                    var anio = $("#anio").val();
+                    var formato = $("#formato").val();
+                    var dnivel = ($("#dnivel").val() || "").replace(/[^A-Za-z0-9_-]/g, "_");
+                    var nombreAlternativo = anio === "2021" && (formato === "G" || formato === "P")
+                        ? "V_CENEC_2021_" + formato + "_Plantilla_AE_N104_" + dnivel + ".xlsx"
+                        : "EEA_" + anio + "_" + formato + "_Plantilla_AE_N104_" + dnivel + ".xlsx";
+                    var filename = filenameMatch
+                        ? decodeURIComponent(filenameMatch[1] || filenameMatch[2])
+                        : nombreAlternativo;
+                    var tiempoGeneracion = xhr.getResponseHeader("X-Tiempo-Generacion");
+                    var segundosTotales = Number(tiempoGeneracion);
+                    var textoTiempo = "Tiempo de generación no disponible";
+                    if (tiempoGeneracion && Number.isFinite(segundosTotales) && segundosTotales >= 0) {
+                        var totalSegundos = Math.round(segundosTotales);
+                        var minutos = Math.floor(totalSegundos / 60);
+                        var segundos = totalSegundos % 60;
+                        textoTiempo = minutos > 0
+                            ? "Generado en " + minutos + " min " + segundos + " s"
+                            : "Generado en " + segundos + " segundos";
+                    }
+                    var downloadUrl = URL.createObjectURL(xhr.response);
+                    Swal.fire({
+                        title: 'Archivo "' + filename + '" listo',
+                        html: '<p>' + textoTiempo + '</p><a id="downloadGeneratedExcel" class="btn btn-success" href="#">Descargar Excel</a>',
+                        showConfirmButton: false,
+                        showCloseButton: true,
+                        type: "success",
+                        onOpen: function () {
+                            var link = document.getElementById("downloadGeneratedExcel");
+                            link.href = downloadUrl;
+                            link.download = filename;
+                            link.addEventListener("click", function () {
+                                window.setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 60000);
+                            }, { once: true });
+                        },
+                        onClose: function () {
+                            window.setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 60000);
+                        }
+                    });
+                    };
+                    signatureReader.readAsArrayBuffer(xhr.response.slice(0, 4));
+                };
 
-                        Swal.fire(
-                            "¡Archivo Generado exitosamente!",
-                            "Presione OK para continuar",
-                            "success"
-                        );
-                    },
+                xhr.onerror = function () {
+                    Swal.fire("Error de conexión", "No se pudo completar la solicitud.", "error");
+                };
 
-                    error: function (xhr, ajaxOptions, thrownError) {
-                        Swal.fire(
-                            xhr.status + ' ' + thrownError,
-                            "¡Ha ocurrido un error, consulte con el administrador!",
-                            "error"
-                        );
-                }
-            });
+                xhr.send(new FormData(form));
         }
     });
     };
